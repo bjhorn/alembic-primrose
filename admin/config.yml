@@ -1,0 +1,425 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: assets
+public_folder: /assets
+collections:
+  - name: config
+    label: Config
+    files:
+      - name: config
+        label: Config
+        file: _config.yml
+        fields:
+          - widget: hidden
+            name: theme
+            label: Theme
+            required: false
+          - widget: string
+            name: title
+            label: Site Title
+            required: false
+          - widget: image
+            name: logo
+            label: Site Logo
+            required: false
+          - widget: hidden
+            name: baseurl
+            label: Base URL
+            required: false
+            hint: Serve the website from the given base URL
+          - widget: hidden
+            name: permalink
+            label: Permalink
+            required: false
+            default: '/posts/:slug:output_ext'
+            hint: 'The output path for your pages, posts, or collections.'
+          - widget: object
+            name: collections
+            label: collections
+            required: false
+            fields:
+              - widget: object
+                name: posts
+                label: posts
+                required: false
+                fields:
+                  - widget: string
+                    name: title
+                    label: Collection Title
+                    required: false
+                  - widget: boolean
+                    name: output
+                    label: Output
+                    required: false
+                  - widget: string
+                    name: description
+                    label: Collection Description
+                    required: false
+                  - widget: markdown
+                    name: feature_text
+                    label: Collection Feature Text
+                    required: false
+                  - widget: image
+                    name: feature_image
+                    label: Collection Feature Image
+                    required: false
+          - widget: list
+            name: navigation_header
+            label: Header Navigation
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Button title
+                required: true
+              - widget: string
+                name: url
+                label: URL
+                required: false
+          - widget: list
+            name: navigation_footer
+            label: Footer Navigation
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Button title
+                required: true
+              - widget: string
+                name: url
+                label: URL
+                required: false
+          - widget: string
+            name: email
+            label: Site Email
+            required: false
+          - widget: object
+            name: social_links
+            label: Social Links
+            required: false
+            hint: Leave empty to hide
+            fields:
+              - widget: string
+                name: Twitter
+                label: Twitter
+                required: false
+              - widget: string
+                name: LinkedIn
+                label: LinkedIn
+                required: false
+              - widget: string
+                name: Googleplus
+                label: Google+
+                required: false
+              - widget: string
+                name: GitHub
+                label: GitHub
+                required: false
+              - widget: string
+                name: link
+                label: link
+                required: false
+              - widget: string
+                name: RSS
+                label: RSS
+                required: false
+          - widget: object
+            name: sharing_links
+            label: Sharing Links
+            required: false
+            hint: Leave empty to hide
+            fields:
+              - widget: select
+                name: Twitter
+                label: Twitter
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#0d94e7'
+              - widget: select
+                name: facebook
+                label: facebook
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#3B5998'
+              - widget: select
+                name: Googleplus
+                label: Google+
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#DC4E41'
+              - widget: select
+                name: Pinterest
+                label: Pinterest
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#BD081C'
+              - widget: select
+                name: LinkedIn
+                label: LinkedIn
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#0077B5'
+              - widget: select
+                name: tumblr
+                label: tumblr
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#36465D'
+              - widget: select
+                name: Reddit
+                label: Reddit
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#FF4500'
+              - widget: select
+                name: HackerNews
+                label: Hacker News
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#ff6600'
+              - widget: select
+                name: DesignerNews
+                label: Designer News
+                required: false
+                options:
+                  - label: Disabled
+                    value: ''
+                  - label: Enabled
+                    value: '#2D72D9'
+              - widget: boolean
+                name: Email
+                label: Email
+                required: false
+  - name: home
+    label: Home
+    files:
+      - name: home
+        label: Home
+        file: index.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: markdown
+            name: feature_text
+            label: Feature text
+            required: false
+          - widget: image
+            name: feature_image
+            label: Feature image
+            required: false
+          - widget: string
+            name: excerpt
+            label: Excerpt
+            required: false
+          - widget: boolean
+            name: aside
+            label: Aside
+            required: false
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: page
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: page
+    label: Pages
+    folder: /
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Page Title
+        required: true
+      - widget: markdown
+        name: feature_text
+        label: Feature text
+        required: false
+      - widget: image
+        name: feature_image
+        label: Feature image
+        required: false
+      - widget: string
+        name: excerpt
+        label: Excerpt
+        required: false
+      - widget: boolean
+        name: aside
+        label: Aside
+        required: false
+      - widget: boolean
+        name: indexing
+        label: Indexing
+        required: false
+      - widget: boolean
+        name: sitemap
+        label: Sitemap
+        required: false
+      - widget: string
+        name: permalink
+        label: Permalink
+        required: false
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: page
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: page
+  - name: post
+    label: Posts
+    folder: _posts
+    create: true
+    extension: md
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Page Title
+        required: true
+      - widget: markdown
+        name: feature_text
+        label: Feature text
+        required: false
+      - widget: image
+        name: feature_image
+        label: Feature image
+        required: false
+      - widget: string
+        name: excerpt
+        label: Excerpt
+        required: false
+      - widget: image
+        name: image
+        label: Image
+        required: false
+      - widget: boolean
+        name: comments
+        label: Enable Comments
+        required: false
+        default: true
+      - widget: boolean
+        name: aside
+        label: Aside
+        required: false
+      - widget: list
+        name: categories
+        label: Categories
+        required: false
+        field:
+          label: String
+          name: string
+          widget: string
+      - widget: boolean
+        name: indexing
+        label: Indexing
+        required: false
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: post
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: post
+  - name: blog
+    label: Blog
+    files:
+      - name: blog
+        label: Blog
+        file: blog/index.html
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: boolean
+            name: aside
+            label: Aside
+            required: false
+          - widget: string
+            name: collectionpage
+            label: Collection page
+            required: false
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: blog
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: categories
+    label: Categories Page
+    files:
+      - name: categories
+        label: Categories Page
+        file: categories.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: string
+            name: excerpt
+            label: Excerpt
+            required: false
+          - widget: boolean
+            name: aside
+            label: Aside
+            required: false
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: categories
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
